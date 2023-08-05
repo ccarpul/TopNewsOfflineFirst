@@ -1,0 +1,134 @@
+def versions = [:]
+versions.activity = '1.7.2'
+versions.accompanist = "0.28.0"
+versions.atsl_junit = "1.1.5"
+versions.coreKtx = "1.10.1"
+versions.compose = "2023.01.00"
+versions.compose_compiler = "1.3.2"
+versions.espresso = "3.5.1"
+
+versions.mockk = "1.11.0"
+versions.navigation = "2.5.3"
+
+versions.junit = "4.13.2"
+versions.kotlin = "1.8.0"
+versions.hilt = "2.44.2"
+versions.lifecycle = "2.6.0-alpha05"
+versions.coroutines = "1.4.1"
+versions.retrofit = "2.9.0"
+versions.gson = "2.8.6"
+versions.okhttp = "3.14.9"
+versions.support = "1.0.0"
+
+versions.room = "2.1.0-alpha06"
+
+ext.versions = versions
+
+// ------ Dependencies -------
+ext.deps = [:]
+deps.coilCompose = "io.coil-kt:coil-compose:1.3.2"
+deps.hiltAndroidGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:$versions.hilt"
+deps.junit = "junit:junit:$versions.junit"
+deps.lottie = "com.airbnb.android:lottie-compose:6.0.0"
+
+def androidx = [:]
+androidx.activityCompose = "androidx.activity:activity-compose:$versions.activity"
+androidx.annotations = "androidx.annotation:annotation:$versions.support"
+androidx.coreKtx = "androidx.core:core-ktx:$versions.coreKtx"
+androidx.constraintLayoutCompose = "androidx.constraintlayout:constraintlayout-compose:1.0.1"
+
+deps.androidx = androidx
+
+
+def room = [:]
+room.runtime = "androidx.room:room-runtime:$versions.room"
+room.compiler = "androidx.room:room-compiler:$versions.room"
+room.rxjava2 = "androidx.room:room-rxjava2:$versions.room"
+room.testing = "androidx.room:room-testing:$versions.room"
+deps.room = room
+
+def lifecycle = [:]
+lifecycle.runtimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:$versions.lifecycle"
+lifecycle.viewmodelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:$versions.lifecycle"
+lifecycle.runtimeCompose = "androidx.lifecycle:lifecycle-runtime-compose:$versions.lifecycle"
+
+deps.lifecycle = lifecycle
+
+
+def retrofit = [:]
+retrofit.runtime = "com.squareup.retrofit2:retrofit:$versions.retrofit"
+retrofit.gson = "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+deps.retrofit = retrofit
+
+def okhttp = [:]
+okhttp.loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$versions.okhttp"
+deps.okhttp = okhttp
+
+def hilt = [:]
+hilt.hiltAndroid = "com.google.dagger:hilt-android:$versions.hilt"
+hilt.hiltCompiler = "com.google.dagger:hilt-compiler:$versions.hilt"
+hilt.hiltNavigationCompose = "androidx.hilt:hilt-navigation-compose:1.0.0"
+deps.hilt = hilt
+
+
+def atsl = [:]
+atsl.extJunit = "androidx.test.ext:junit:$versions.atsl_junit"
+deps.atsl = atsl
+
+def mockk = [:]
+mockk.mockk = "io.mockk:mockk:$versions.mockk"
+mockk.mockkAndroid = "io.mockk:mockk-android:$versions.mockk"
+mockk.mockkAgentApi = "io.mockk:mockk-agent-api:$versions.mockk"
+mockk.mockkAgentJvm = "io.mockk:mockk-agent-jvm:$versions.mockk"
+deps.mockk = mockk
+
+def espresso = [:]
+espresso.core = "androidx.test.espresso:espresso-core:$versions.espresso"
+deps.espresso = espresso
+
+def kotlin = [:]
+kotlin.bom = "org.jetbrains.kotlin:kotlin-bom:$versions.kotlin"
+kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+kotlin.test = "org.jetbrains.kotlin:kotlin-test-junit:$versions.kotlin"
+kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+kotlin.allopen = "org.jetbrains.kotlin:kotlin-allopen:$versions.kotlin"
+kotlin.coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines"
+kotlin.coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines"
+deps.kotlin = kotlin
+
+
+def navigation = [:]
+navigation.navigationCompose = "androidx.navigation:navigation-compose:$versions.navigation"
+deps.navigation = navigation
+
+def accompanist = [:]
+accompanist.insets = "com.google.accompanist:accompanist-insets:$versions.accompanist"
+accompanist.systemuicontroller = "com.google.accompanist:accompanist-systemuicontroller:$versions.accompanist"
+accompanist.flowlayouts = "com.google.accompanist:accompanist-flowlayout:$versions.accompanist"
+accompanist.pager = "com.google.accompanist:accompanist-pager:$versions.accompanist"
+accompanist.pagerindicators = "com.google.accompanist:accompanist-pager-indicators:$versions.accompanist"
+deps.accompanist = accompanist
+
+def compose = [:]
+compose.bom = "androidx.compose:compose-bom:$versions.compose"
+compose.compiler = "androidx.compose.compiler:compiler:$versions.compose_compiler"
+compose.foundation = "androidx.compose.foundation:foundation:1.4.0-alpha03"
+compose.layout = "androidx.compose.foundation:foundation-layout:1.4.0-alpha03"
+compose.ui = "androidx.compose.ui:ui"
+compose.uiUtil = "androidx.compose.ui:ui-util"
+compose.runtime = "androidx.compose.runtime:runtime"
+compose.runtimeLivedata = "androidx.compose.runtime:runtime-livedata"
+compose.material = "androidx.compose.material:material"
+compose.material3 = "androidx.compose.material3:material3"
+compose.animation = "androidx.compose.animation:animation"
+compose.tooling = "androidx.compose.ui:ui-tooling"
+compose.toolingPreview = "androidx.compose.ui:ui-tooling-preview"
+compose.iconsExtended = "androidx.compose.material:material-icons-extended"
+compose.uiTest = "androidx.compose.ui:ui-test-junit4"
+compose.uiGraphics = 'androidx.compose.ui:ui-graphics'
+compose.debugImplementation = 'androidx.compose.ui:ui-test-manifest'
+deps.compose = compose
+
+
+ext.deps = deps
+

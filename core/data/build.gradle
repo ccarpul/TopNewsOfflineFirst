@@ -1,0 +1,18 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+apply from: '../../config-android.gradle'
+
+android {
+    namespace 'com.platzi.core.data'
+    compileSdk 33
+}
+
+dependencies {
+    implementation project(":core:network")
+
+    implementation deps.kotlin.coroutinesAndroid
+    implementation deps.hilt.hiltNavigationCompose
+}

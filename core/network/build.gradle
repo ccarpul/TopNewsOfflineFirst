@@ -1,0 +1,39 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+apply from: '../../config-android.gradle'
+
+android {
+    namespace 'com.platzi.core.network'
+    compileSdk 33
+
+    buildFeatures {
+        buildConfig = true
+    }
+
+    defaultConfig {
+        buildConfigField "String", "API_PROTOCOL", API_PROTOCOL
+        buildConfigField "String", "API_PROTOCOL_SECURE", API_PROTOCOL_SECURE
+        buildConfigField "String", "API_DOMAIN_DEV", API_DOMAIN_DEV
+        buildConfigField "String", "API_VERSION", API_VERSION
+    }
+
+    buildTypes.each {
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+        def NEWS_API_KEY = properties.getProperty("NEWS_API_KEY", "")
+        it.buildConfigField 'String', "NEWS_API_KEY", NEWS_API_KEY
+        it.resValue 'string', "NEWS_API_KEY", NEWS_API_KEY
+    }
+}
+
+dependencies {
+    implementation deps.okhttp.loggingInterceptor
+    implementation deps.retrofit.runtime
+    implementation deps.retrofit.gson
+    implementation deps.kotlin.coroutinesAndroid
+    implementation deps.lifecycle.runtimeCompose
+    implementation deps.hilt.hiltNavigationCompose
+}
