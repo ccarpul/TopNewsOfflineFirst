@@ -1,0 +1,13 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+apply from: '../../config-android.gradle'
+
+android {
+    namespace 'com.platzi.mylibrary'
+    compileSdk 33
+}
+
+dependencies {
+}

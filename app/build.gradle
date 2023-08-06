@@ -33,6 +33,7 @@ android {
 dependencies {
     implementation project(":feature:mainnews")
     implementation project(":core:network")
+    implementation project(":core:data")
 
     implementation deps.androidx.coreKtx
     implementation deps.androidx.activityCompose

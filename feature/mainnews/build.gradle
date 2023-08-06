@@ -19,8 +19,25 @@ android {
 
 dependencies {
     implementation project(":core:domain")
+    implementation project(":core:model")
 
+    testImplementation deps.junit
+    testImplementation deps.atsl.extJunit
+    testImplementation deps.espresso.core
+    debugImplementation deps.compose.debugImplementation
+
+    implementation deps.lifecycle.runtimeCompose
     implementation deps.navigation.navigationCompose
     implementation deps.hilt.hiltNavigationCompose
+    implementation platform(deps.compose.bom)
+    implementation deps.compose.ui
+    implementation deps.compose.uiUtil
+    implementation deps.compose.tooling
+    implementation deps.compose.toolingPreview
+    implementation deps.compose.material3
+    implementation deps.accompanist.pager
+    implementation deps.accompanist.pagerindicators
+    implementation deps.coilCompose
+    implementation deps.compose.lottie
 
 }

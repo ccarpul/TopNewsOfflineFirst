@@ -12,7 +12,18 @@ android {
 
 dependencies {
     implementation project(":core:network")
+    implementation project(":core:database")
+    implementation project(":core:model")
+    implementation project(":core:common")
 
     implementation deps.kotlin.coroutinesAndroid
     implementation deps.hilt.hiltNavigationCompose
+    implementation deps.hilt.hiltCommon
+    implementation deps.hilt.hiltWork
+    kapt deps.hilt.extHiltCompiler
+    implementation deps.work.ktx
+    implementation deps.lifecycle.livedata
+    implementation deps.androidx.startup
+    implementation deps.paging.runtime
+    implementation deps.paging.compose
 }

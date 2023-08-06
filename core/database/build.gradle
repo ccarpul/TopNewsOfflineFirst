@@ -1,0 +1,21 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+apply from: '../../config-android.gradle'
+
+android {
+    namespace 'com.platzi.core.database'
+    compileSdk 33
+}
+
+dependencies {
+    implementation project(":core:model")
+
+    implementation deps.room.runtime
+    kapt deps.room.compiler
+    implementation deps.room.ktx
+    implementation deps.kotlin.coroutinesAndroid
+    implementation deps.hilt.hiltNavigationCompose
+}

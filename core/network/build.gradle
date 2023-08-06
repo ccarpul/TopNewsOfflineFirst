@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlinx-serialization'
 }
 
 apply from: '../../config-android.gradle'
@@ -36,4 +37,5 @@ dependencies {
     implementation deps.kotlin.coroutinesAndroid
     implementation deps.lifecycle.runtimeCompose
     implementation deps.hilt.hiltNavigationCompose
+    implementation deps.kotlin.serialization
 }
