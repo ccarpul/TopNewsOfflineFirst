@@ -51,6 +51,7 @@ def room = [:]
 room.runtime = "androidx.room:room-runtime:$versions.room"
 room.compiler = "androidx.room:room-compiler:$versions.room"
 room.ktx = "androidx.room:room-ktx:$versions.room"
+room.paging = "androidx.room:room-paging:$versions.room"
 deps.room = room
 
 def lifecycle = [:]
@@ -148,6 +149,7 @@ deps.work = work
 def paging = [:]
 paging.runtime = "androidx.paging:paging-runtime:$versions.paging"
 paging.compose = "androidx.paging:paging-compose:1.0.0-alpha17"
+paging.common =  "androidx.paging:paging-common-ktx:$versions.paging"
 deps.paging = paging
 
 ext.deps = deps

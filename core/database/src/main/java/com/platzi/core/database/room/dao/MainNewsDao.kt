@@ -1,5 +1,6 @@
 package com.platzi.core.database.room.dao
 
+import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
@@ -20,6 +21,12 @@ interface MainNewsDao {
     )
     fun getMainNews(): Flow<List<PopulatedMainNews>>
 
+    @Query("Select * From main_news Order By page")
+    fun getMainNewsPaged(): PagingSource<Int, PopulatedMainNews>
+
     @Upsert
     suspend fun upsertNewsResources(newsResourceEntities: List<MainNewsEntity>)
+
+    @Query("Delete From main_news")
+    suspend fun clearAllMovies()
 }

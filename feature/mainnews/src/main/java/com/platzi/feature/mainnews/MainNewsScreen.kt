@@ -12,9 +12,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.grid.rememberLazyGridState
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
@@ -22,7 +19,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
@@ -42,6 +38,8 @@ import com.google.accompanist.pager.rememberPagerState
 import com.platzi.core.model.Article
 import kotlin.math.absoluteValue
 import androidx.compose.ui.util.lerp
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
 import coil.compose.AsyncImage
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
@@ -53,22 +51,9 @@ fun MainNewsRoute(
     viewModel: MainNewsViewModel = hiltViewModel(),
 ) {
 
-    val mainNewsState by viewModel.mainNewsUiState.collectAsStateWithLifecycle()
+    val state = viewModel.mainNewsPagedUiState.collectAsLazyPagingItems()
 
-    MainNewsScreen(mainNewsState) {
-        viewModel.getMainNewsSyncable("co")
-    }
-}
-
-@Composable
-fun MainNewsScreen(
-    mainNewsState: MainNewsUiState,
-    onClick: () -> Unit,
-) {
-    when (mainNewsState) {
-        MainNewsUiState.Loading -> LoadingState()
-        is MainNewsUiState.Success -> MainNewsGrid(mainNewsState.mainNews) { onClick() }
-    }
+    MainNewsGridPaged(state) {}
 }
 
 @Composable
@@ -83,27 +68,29 @@ fun LoadingState() {
     }
 }
 
+
 @Composable
-fun MainNewsGrid(mainNewsList: List<Article>, onClick: () -> Unit) {
-    MainNewsHorizontalPage(mainNewsList) {
+fun MainNewsGridPaged(articles: LazyPagingItems<Article>, onClick: () -> Unit) {
+    MainNewsHorizontalPage(articles) {
         onClick()
     }
 }
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun MainNewsHorizontalPage(mainNewsList: List<Article>, onClick: () -> Unit) {
+fun MainNewsHorizontalPage(articles: LazyPagingItems<Article>, onClick: () -> Unit) {
 
     val pagerState = rememberPagerState()
 
     HorizontalPager(
-        count = mainNewsList.size,
+        count = articles.itemCount,
         state = pagerState,
         itemSpacing = 16.dp,
         contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp),
         modifier = Modifier.wrapContentSize()
     ) { current ->
-        NewsCardResumed(mainNewsList[current])
+
+        articles[current]?.let { NewsCardResumed(it) }
     }
 }
 

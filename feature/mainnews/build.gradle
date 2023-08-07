@@ -39,5 +39,7 @@ dependencies {
     implementation deps.accompanist.pagerindicators
     implementation deps.coilCompose
     implementation deps.compose.lottie
+    implementation deps.paging.compose
+    implementation deps.paging.common
 
 }

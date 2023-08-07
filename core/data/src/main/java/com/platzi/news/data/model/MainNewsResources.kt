@@ -14,4 +14,5 @@ fun NetworkNewsResource.asEntity() = MainNewsEntity(
     title = title.orEmpty(),
     url = url.orEmpty(),
     urlToImage = urlToImage.orEmpty(),
+    page = 0
 )

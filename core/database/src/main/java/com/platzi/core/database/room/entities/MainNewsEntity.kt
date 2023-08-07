@@ -18,6 +18,8 @@ data class MainNewsEntity(
     val title: String,
     val url: String,
     val urlToImage: String,
+    @ColumnInfo(name = "page")
+    var page: Int,
 ) {
     companion object {
         const val TABLE_NAME = "main_news"

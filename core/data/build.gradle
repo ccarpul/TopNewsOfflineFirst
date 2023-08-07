@@ -26,4 +26,7 @@ dependencies {
     implementation deps.androidx.startup
     implementation deps.paging.runtime
     implementation deps.paging.compose
+    implementation deps.room.runtime
+    kapt deps.room.compiler
+    implementation deps.room.ktx
 }

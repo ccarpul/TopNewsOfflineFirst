@@ -5,16 +5,19 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.platzi.core.database.room.dao.MainNewsDao
+import com.platzi.core.database.room.dao.RemoteKeysDao
 import com.platzi.core.database.room.entities.MainNewsEntity
+import com.platzi.core.database.room.entities.RemoteKeysEntity
 
 
 @Database(
-    entities = [MainNewsEntity::class],
+    entities = [MainNewsEntity::class, RemoteKeysEntity::class],
     version = 1
 )
 abstract class MainNewsRoomDatabase : RoomDatabase() {
 
     abstract fun mainNewsDao(): MainNewsDao
+    abstract fun remoteKeysDao(): RemoteKeysDao
 
     companion object {
 

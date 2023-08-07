@@ -30,15 +30,14 @@ class RetrofitMainNewsNetwork @Inject constructor() : INewsNetworkDataSource {
         .build().run {
             create(RetrofitMainNewsNetworkApi::class.java)
         }
-
-    override suspend fun fetchArticles(
+    override suspend fun fetchMainNewsNetworkResources(
         page: Int,
         pageSize: Int,
         country: String,
-    ): List<NetworkNewsResource> =
+    ): NetworkArticles =
         networkApi.fetchArticles(
             page,
             pageSize,
             country
-        ).articleResponse
+        )
 }
