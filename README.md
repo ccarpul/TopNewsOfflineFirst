@@ -1,15 +1,46 @@
-# platzinews
+# Platzi news challenge
+
+Mobile App developed in Kotlin for Android for Platzi Challenge.
+
+It shows recent news from US and the articles saved
 
 
-<img src=""
-width="100">
+## Main aspects 
+
+* Presentation pattern MVVM / MVI
+
+* Clean Architecture
+
+* Multimodular App in Kotlin
+
+* UI in Jetpack compose
+
+* Material 3 theme
+
+* Flow for data
+
+* Paging 3
+
+* First offline data
+
+* Room
+
+* Retrofit
+
+* Mockk
 
 
-Mobile App developed in Kotlin for Android.
+<table>
+  <tr>
+    <td>Home</td>
+    <td>Saved News</td>
+   </tr> 
+   <tr>
+      <td><img src="https://github.com/ccarpul/platzinews/blob/develop/home.png"width="300"></td>
+    <td> <img src="https://github.com/ccarpul/platzinews/blob/develop/SavedScreen.png"width="300"> </td>
+  </tr>
+</table>
 
-It shows recent news from a lot of countries,
-Just choice your preferences accourding artícles 
-sources or country and category.
+## Authors ✒️
 
-<img src=""
-width="1200">
+* **Carlos Pulido** 
