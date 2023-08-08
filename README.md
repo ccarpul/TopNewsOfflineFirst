@@ -4,6 +4,19 @@ Mobile App developed in Kotlin for Android for Platzi Challenge.
 
 It shows recent news from US and the articles saved
 
+The newsapi.org api was used.
+
+# For Run 
+
+* Create an account in [newsapi.org](https://newsapi.org/)
+
+* Get API key
+
+* Past this line in your local.properties of the project
+
+    NEWS_API_KEY = "apiKey={your api key here}"
+
+* Run the branch **develop**
 
 ## Main aspects 
 
