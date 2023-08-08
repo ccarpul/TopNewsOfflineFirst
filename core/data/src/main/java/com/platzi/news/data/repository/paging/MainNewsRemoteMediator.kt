@@ -77,7 +77,7 @@ class MainNewsRemoteMediator @Inject constructor(
             mainNewsRoomDatabase.withTransaction {
                 if (loadType == LoadType.REFRESH) {
                     remoteKeysDao.clearRemoteKeys()
-                    mainNewsDao.clearAllMovies()
+                    mainNewsDao.clearAllArticles()
                 }
 
                 val remoteKeys = mainNews

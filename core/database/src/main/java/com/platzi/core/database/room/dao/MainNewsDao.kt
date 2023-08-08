@@ -31,5 +31,5 @@ interface MainNewsDao {
     fun updateArticle(isSaved: Boolean, title: String)
 
     @Query("Delete From main_news")
-    suspend fun clearAllMovies()
+    suspend fun clearAllArticles()
 }
