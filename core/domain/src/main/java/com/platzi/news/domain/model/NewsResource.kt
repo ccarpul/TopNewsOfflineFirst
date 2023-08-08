@@ -13,4 +13,5 @@ fun NewsResource.asExternalModelArticle() = Article(
     title = title,
     url = url,
     urlToImage = urlToImage,
+    isSaved = isSaved
 )

@@ -16,6 +16,8 @@ dependencies {
     implementation deps.room.runtime
     kapt deps.room.compiler
     implementation deps.room.ktx
+    implementation deps.room.paging
     implementation deps.kotlin.coroutinesAndroid
     implementation deps.hilt.hiltNavigationCompose
+    implementation deps.paging.common
 }

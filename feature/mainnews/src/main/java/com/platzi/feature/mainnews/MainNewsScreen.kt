@@ -1,216 +1,114 @@
 package com.platzi.feature.mainnews
 
+
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.grid.rememberLazyGridState
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalInspectionMode
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.HorizontalPager
-import com.google.accompanist.pager.PagerScope
-import com.google.accompanist.pager.calculateCurrentOffsetForPage
-import com.google.accompanist.pager.rememberPagerState
-import com.platzi.core.model.Article
-import kotlin.math.absoluteValue
 import androidx.compose.ui.util.lerp
-import coil.compose.AsyncImage
-import com.airbnb.lottie.compose.LottieAnimation
-import com.airbnb.lottie.compose.LottieCompositionSpec
-import com.airbnb.lottie.compose.LottieConstants
-import com.airbnb.lottie.compose.rememberLottieComposition
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.platzi.core.model.Article
+import androidx.paging.LoadState
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
+import com.google.accompanist.pager.calculateCurrentOffsetForPage
+import com.platzi.core.ui.cards.NewsCardResumed
+import com.platzi.core.ui.loading.LoadingAnimation
+import com.platzi.core.ui.loading.LoadingState
+import com.platzi.core.ui.pager.CustomHorizontalPager
+import kotlin.math.absoluteValue
 
 @Composable
 fun MainNewsRoute(
     viewModel: MainNewsViewModel = hiltViewModel(),
 ) {
-
-    val mainNewsState by viewModel.mainNewsUiState.collectAsStateWithLifecycle()
-
-    MainNewsScreen(mainNewsState) {
-        viewModel.getMainNewsSyncable("co")
+    val state = viewModel.mainNewsPagedUiState.collectAsLazyPagingItems()
+    when (state.loadState.mediator?.refresh) {
+        LoadState.Loading -> LoadingState()
+        else -> MainNewsGridPaged(state) { article ->
+            viewModel.updateSaveArticle(article)
+        }
     }
 }
 
+@OptIn(ExperimentalPagerApi::class)
 @Composable
-fun MainNewsScreen(
-    mainNewsState: MainNewsUiState,
-    onClick: () -> Unit,
+fun MainNewsGridPaged(
+    articles: LazyPagingItems<Article>,
+    updateSaveArticle: (Article) -> Unit,
 ) {
-    when (mainNewsState) {
-        MainNewsUiState.Loading -> LoadingState()
-        is MainNewsUiState.Success -> MainNewsGrid(mainNewsState.mainNews) { onClick() }
-    }
-}
-
-@Composable
-fun LoadingState() {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.White),
-        contentAlignment = Alignment.Center
-    ) {
-        LoadingAnimation()
-    }
-}
-
-@Composable
-fun MainNewsGrid(mainNewsList: List<Article>, onClick: () -> Unit) {
-    MainNewsHorizontalPage(mainNewsList) {
-        onClick()
-    }
-}
-
-@OptIn(ExperimentalPagerApi::class)
-@Composable
-fun MainNewsHorizontalPage(mainNewsList: List<Article>, onClick: () -> Unit) {
-
-    val pagerState = rememberPagerState()
-
-    HorizontalPager(
-        count = mainNewsList.size,
-        state = pagerState,
-        itemSpacing = 16.dp,
-        contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp),
-        modifier = Modifier.wrapContentSize()
-    ) { current ->
-        NewsCardResumed(mainNewsList[current])
-    }
-}
-
-@OptIn(ExperimentalPagerApi::class)
-@Composable
-fun PagerScope.NewsCardResumed(article: Article) {
-
-    Card(
-        modifier = Modifier
-            .graphicsLayer {
-                val pageOffset = calculateCurrentOffsetForPage(currentPage).absoluteValue
-                lerp(
-                    start = 0.85f,
-                    stop = 1f,
-                    fraction = 1f - pageOffset.coerceIn(0f, 1f)
-                ).also { scale ->
-                    scaleX = scale
-                    scaleY = scale
-                }
-                alpha = lerp(
-                    start = 0.5f,
-                    stop = 1f,
-                    fraction = 1f - pageOffset.coerceIn(0f, 1f)
-                )
-            }
-            .fillMaxWidth()
-            .height(300.dp),
-        shape = RoundedCornerShape(12.dp),
-    ) {
-
-        NewsHeaderImage(article.urlToImage)
-
-        Column(
+    Column {
+        Text(
+            text = "Now in Unite State",
+            style = MaterialTheme.typography.titleLarge.copy(
+                fontSize = 30.sp,
+                textAlign = TextAlign.Center
+            ),
             modifier = Modifier
-                .fillMaxSize()
-                .background(color = Color.White),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
+                .padding(top = 32.dp)
+                .fillMaxWidth()
+        )
+        Spacer(modifier = Modifier.padding(vertical = 16.dp))
 
-            Text(
-                text = article.title,
-                fontSize = 18.sp,
-                textAlign = TextAlign.Justify,
-                modifier = Modifier.padding(horizontal = 4.dp)
-            )
-            Text(
-                text = article.description,
-                fontSize = 14.sp,
-                textAlign = TextAlign.Justify,
-                modifier = Modifier.padding(horizontal = 4.dp)
-            )
+        CustomHorizontalPager(
+            itemCount = articles.itemCount
+        ) { pagerScope, current ->
+            articles[current]?.let { article ->
+                NewsCardResumed(
+                    modifier = Modifier
+                        .graphicsLayer {
+                            val pageOffset = pagerScope
+                                .calculateCurrentOffsetForPage(current)
+                                .absoluteValue
 
-            Row {
-                Text(
-                    text = article.author,
-                    fontSize = 8.sp,
-                    textAlign = TextAlign.Start,
-                    modifier = Modifier.padding(horizontal = 4.dp)
-                )
-                Text(
-                    text = article.publishedAt,
-                    fontSize = 8.sp,
-                    textAlign = TextAlign.Start,
-                    modifier = Modifier.padding(horizontal = 4.dp)
-                )
+                            lerp(
+                                start = 0.89f,
+                                stop = 1f,
+                                fraction = 1f - pageOffset.coerceIn(0.2f, 1f)
+                            ).also { scale ->
+                                scaleX = scale
+                                scaleY = scale
+                            }
+                            alpha = lerp(
+                                start = 0.7f,
+                                stop = 1f,
+                                fraction = 1f - pageOffset.coerceIn(0f, 1f)
+                            )
+                        }
+                        .fillMaxWidth()
+                        .height(340.dp),
+                    article = article
+                ){
+                    updateSaveArticle(article.copy(isSaved = !article.isSaved))
+                }
             }
         }
-
     }
-}
-
-@Composable
-fun NewsCardExpanded() {
-
-}
-
-@Composable
-fun NewsHeaderImage(
-    headerImageUrl: String?,
-) {
-    AsyncImage(
-        placeholder = if (LocalInspectionMode.current) {
-            painterResource(coil.base.R.drawable.notification_bg)
-        } else null,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(180.dp),
-        contentScale = ContentScale.Crop,
-        model = headerImageUrl,
-
-        contentDescription = null,
-    )
 }
 
 @Preview
 @Composable
-fun LoadingAnimationPreview() {
-    LoadingAnimation()
-}
-
-@Composable
-fun LoadingAnimation() {
-    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.loading_animation))
-    LottieAnimation(
-        composition = composition,
-        iterations = LottieConstants.IterateForever,
-        modifier = Modifier.size(111.dp)
-    )
+fun LoadingPreview() {
+    Box(
+        Modifier
+            .fillMaxSize()
+            .background(Color.Transparent),
+        contentAlignment = Alignment.Center,
+    ) { LoadingState() }
 }

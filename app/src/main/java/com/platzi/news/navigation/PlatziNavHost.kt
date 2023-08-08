@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.platzi.feature.mainnews.navigation.mainNewsRoute
 import com.platzi.feature.mainnews.navigation.mainNewsScreen
+import com.platzi.feature.mainnews.navigation.savedNewsScreen
 
 @Composable
 fun PlatziNavHost(
@@ -19,5 +20,6 @@ fun PlatziNavHost(
         modifier = modifier,
     ) {
         mainNewsScreen ()
+        savedNewsScreen()
     }
 }

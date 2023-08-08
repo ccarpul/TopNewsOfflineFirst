@@ -1,3 +1,5 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Platzi Challenge News</string>
+    <string name="app_bottom_bar_home" tools:ignore="ExtraTranslation">Home</string>
+    <string name="app_bottom_bar_saved" tools:ignore="ExtraTranslation">Saved</string>
 </resources>

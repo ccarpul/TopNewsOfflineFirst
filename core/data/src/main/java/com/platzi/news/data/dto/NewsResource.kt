@@ -13,6 +13,7 @@ data class NewsResource(
     val title: String,
     val url: String,
     val urlToImage: String,
+    val isSaved: Boolean
 )
 
 fun NetworkNewsResource.asArticleResource() = NewsResource(
@@ -24,5 +25,6 @@ fun NetworkNewsResource.asArticleResource() = NewsResource(
     publishedAt = publishedAt.orEmpty(),
     title = title.orEmpty(),
     url = url.orEmpty(),
-    urlToImage = urlToImage.orEmpty()
+    urlToImage = urlToImage.orEmpty(),
+    isSaved = false
 )

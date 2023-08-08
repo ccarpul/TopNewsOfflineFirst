@@ -6,7 +6,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.platzi.feature.mainnews.MainNewsRoute
 
-const val mainNewsRoute = "bookmarks_route"
+const val mainNewsRoute = "main_news_route"
 
 fun NavController.navigateToMainNews(navOptions: NavOptions? = null) =
     navigate(mainNewsRoute, navOptions)

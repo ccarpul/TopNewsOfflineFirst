@@ -1,6 +1,8 @@
 package com.platzi.core.database.di
 
 import com.platzi.core.database.room.dao.MainNewsDao
+import com.platzi.core.database.room.dao.RemoteKeysDao
+import com.platzi.core.database.room.dao.SavedNewsDao
 import com.platzi.core.database.room.database.MainNewsRoomDatabase
 import dagger.Module
 import dagger.Provides
@@ -15,4 +17,14 @@ object DaosModule {
     fun providesNewsResourceDao(
         database: MainNewsRoomDatabase,
     ): MainNewsDao = database.mainNewsDao()
+
+    @Provides
+    fun providesRemoteKeysDao(
+        database: MainNewsRoomDatabase,
+    ): RemoteKeysDao = database.remoteKeysDao()
+
+    @Provides
+    fun providesSavedNewsDao(
+        database: MainNewsRoomDatabase,
+    ): SavedNewsDao = database.savedNewsDao()
 }

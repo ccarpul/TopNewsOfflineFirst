@@ -19,4 +19,5 @@ fun PopulatedMainNews.asExternalModelArticle() = Article(
     title = entity.title,
     url = entity.url,
     urlToImage = entity.urlToImage,
+    isSaved = entity.isSaved
 )
