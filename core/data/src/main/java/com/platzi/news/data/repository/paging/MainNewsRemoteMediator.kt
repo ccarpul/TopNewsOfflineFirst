@@ -71,7 +71,7 @@ class MainNewsRemoteMediator @Inject constructor(
                 pageSize = INewsNetworkDataSource.PAGE_SIZE,
                 country = Config.country
             )
-            delay(5000L)
+            delay(2000L) //For testing
             val endOfPaginationReached = mainNews.articleResponse.isEmpty()
 
             mainNewsRoomDatabase.withTransaction {
