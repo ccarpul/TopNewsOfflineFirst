@@ -39,4 +39,5 @@ dependencies {
     testImplementation deps.junit
     implementation deps.mockk.mockkAgentJvm
     implementation deps.kotlin.coroutinesTest
+    implementation deps.kotlin.test
 }

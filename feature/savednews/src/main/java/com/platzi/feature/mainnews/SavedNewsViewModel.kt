@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.platzi.core.common.network.Dispatcher
 import com.platzi.core.common.network.PlatziDispatchers
 import com.platzi.core.model.Article
-import com.platzi.news.domain.usecases.GetLocalSavedNewsUseCase
+import com.platzi.news.domain.usecases.IGetLocalSavedNewsUseCase
 import com.platzi.news.domain.usecases.UpdateArticleUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
@@ -19,13 +19,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SavedNewsViewModel @Inject constructor(
-    getLocalSavedNewsUseCase: GetLocalSavedNewsUseCase,
+    getLocalSavedNewsUseCase: IGetLocalSavedNewsUseCase,
     private val updateArticleUseCase: UpdateArticleUseCase,
     @Dispatcher(PlatziDispatchers.IO) private val ioDispatcher: CoroutineDispatcher,
 ) : ViewModel() {
 
     val mainNewsUiState: StateFlow<SavedNewsState> = getLocalSavedNewsUseCase()
-        .map<List<Article>, SavedNewsState>(SavedNewsState ::Success)
+        .map<List<Article>, SavedNewsState>(SavedNewsState::Success)
         .onStart { emit(SavedNewsState.Loading) }
         .stateIn(
             scope = viewModelScope,
