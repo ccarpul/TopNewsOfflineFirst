@@ -11,6 +11,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -19,6 +20,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.platzi.core.model.Article
 import com.platzi.core.ui.cards.NewsCardResumed
 import com.platzi.core.ui.loading.LoadingState
+import com.platzi.feature.savednews.R
 
 
 @Composable
@@ -46,7 +48,7 @@ fun SavedNewsLazyList(
 ) {
     Column(Modifier.padding(horizontal = 32.dp)) {
         Text(
-            text = "Your news saved",
+            text = stringResource(R.string.saved_news_title),
             style = MaterialTheme.typography.titleLarge.copy(
                 fontSize = 30.sp,
                 textAlign = TextAlign.Center

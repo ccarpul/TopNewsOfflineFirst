@@ -5,10 +5,16 @@
     <!-- Allows us to override night specific attributes in the
          values-night folder. -->
     <style name="Platzi.Theme.News" parent="android:Theme.Material.NoActionBar">
-        <item name="android:colorPrimary">#ff00ff</item>
-        <item name="android:colorAccent">#ff00ff</item>
+        <item name="android:colorPrimary">#4d4ec8</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="Theme.AppCompat.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#e1dfff</item>
+        <item name="postSplashScreenTheme">@style/Platzi.Theme.News</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_foreground</item>
+        <item name="windowSplashScreenIconBackgroundColor">#e1dfff</item>
     </style>
 
 </resources>

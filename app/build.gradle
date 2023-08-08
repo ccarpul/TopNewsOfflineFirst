@@ -50,13 +50,12 @@ dependencies {
     implementation deps.compose.toolingPreview
     implementation deps.compose.material3
     implementation deps.navigation.navigationCompose
-
-
     implementation deps.hilt.hiltNavigationCompose
     deps.hiltAndroidGradlePlugin
     implementation deps.hilt.hiltAndroid
     kapt deps.hilt.hiltCompiler
     implementation deps.navigation.navigationCompose
+    implementation deps.splash.core
 
     androidTestImplementation platform(deps.compose.bom)
     androidTestImplementation deps.compose.uiTest

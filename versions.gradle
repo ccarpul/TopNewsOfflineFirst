@@ -19,14 +19,11 @@ versions.retrofit = "2.9.0"
 versions.gson = "2.8.6"
 versions.okhttp = "3.14.9"
 versions.support = "1.0.0"
-
 versions.room = "2.5.0"
-
 versions.androidWork = "2.7.1"
-
 versions.lottie = "6.0.0"
-
 versions.paging = "3.1.1"
+versions.splash = "1.0.0"
 
 ext.versions = versions
 
@@ -148,9 +145,13 @@ deps.work = work
 
 def paging = [:]
 paging.runtime = "androidx.paging:paging-runtime:$versions.paging"
-paging.compose = "androidx.paging:paging-compose:1.0.0-alpha17"
+paging.compose = 'androidx.paging:paging-compose:1.0.0-alpha17'
 paging.common =  "androidx.paging:paging-common-ktx:$versions.paging"
 deps.paging = paging
+
+def splash = [:]
+splash.core = "androidx.core:core-splashscreen:$versions.splash"
+deps.splash = splash
 
 ext.deps = deps
 
