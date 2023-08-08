@@ -34,4 +34,9 @@ dependencies {
     deps.hiltAndroidGradlePlugin
     implementation deps.hilt.hiltAndroid
     kapt deps.hilt.hiltCompiler
+    testImplementation deps.mockk.mockk
+    androidTestImplementation deps.mockk.mockkAndroid
+    testImplementation deps.junit
+    implementation deps.mockk.mockkAgentJvm
+    implementation deps.kotlin.coroutinesTest
 }
