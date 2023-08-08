@@ -6,4 +6,8 @@ import kotlinx.coroutines.flow.Flow
 
 interface INewsRepository {
     fun getMainNewsPagedDao(): Flow<PagingData<Article>>
+
+    fun updateArticle(article: Article)
+
+    fun getSavedNews(): Flow<List<Article>>
 }

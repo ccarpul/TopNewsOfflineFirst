@@ -1,0 +1,43 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+apply from: '../../config-android.gradle'
+
+android {
+    namespace 'com.platzi.feature.savednews'
+    compileSdk 33
+
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.4.0'
+    }
+}
+
+dependencies {
+    implementation project(":core:ui")
+    implementation project(":core:domain")
+    implementation project(":core:model")
+    implementation project(path: ':core:common')
+
+    testImplementation deps.junit
+    testImplementation deps.atsl.extJunit
+    testImplementation deps.espresso.core
+    debugImplementation deps.compose.debugImplementation
+
+    implementation deps.lifecycle.runtimeCompose
+    implementation deps.navigation.navigationCompose
+    implementation deps.hilt.hiltNavigationCompose
+    implementation platform(deps.compose.bom)
+    implementation deps.compose.ui
+    implementation deps.compose.uiUtil
+    implementation deps.compose.tooling
+    implementation deps.compose.toolingPreview
+    implementation deps.compose.material3
+    implementation deps.coilCompose
+    implementation deps.paging.compose
+    implementation deps.paging.common
+}

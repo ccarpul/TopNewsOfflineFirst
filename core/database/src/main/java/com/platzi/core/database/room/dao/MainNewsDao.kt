@@ -27,6 +27,9 @@ interface MainNewsDao {
     @Upsert
     suspend fun upsertNewsResources(newsResourceEntities: List<MainNewsEntity>)
 
+    @Query("UPDATE ${MainNewsEntity.TABLE_NAME} SET isSaved = :isSaved where title = :title")
+    fun updateArticle(isSaved: Boolean, title: String)
+
     @Query("Delete From main_news")
     suspend fun clearAllMovies()
 }

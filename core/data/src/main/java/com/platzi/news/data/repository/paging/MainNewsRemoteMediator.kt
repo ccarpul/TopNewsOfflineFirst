@@ -10,6 +10,7 @@ import com.platzi.core.database.room.dao.RemoteKeysDao
 import com.platzi.core.database.room.database.MainNewsRoomDatabase
 import com.platzi.core.database.room.entities.RemoteKeysEntity
 import com.platzi.core.database.room.model.PopulatedMainNews
+import com.platzi.core.model.Config
 import com.platzi.core.network.api.INewsNetworkDataSource
 import com.platzi.core.network.model.NetworkNewsResource
 import com.platzi.news.data.model.asEntity
@@ -17,6 +18,7 @@ import com.platzi.news.data.util.getRemoteKeyClosestToCurrentPosition
 import com.platzi.news.data.util.getRemoteKeyForFirstItem
 import com.platzi.news.data.util.getRemoteKeyForLastItem
 import com.platzi.news.data.util.isInitialLaunch
+import kotlinx.coroutines.delay
 import java.io.IOException
 import java.util.Locale
 import java.util.concurrent.TimeUnit
@@ -67,8 +69,9 @@ class MainNewsRemoteMediator @Inject constructor(
             val mainNews = network.fetchMainNewsNetworkResources(
                 page = page,
                 pageSize = INewsNetworkDataSource.PAGE_SIZE,
-                country = Locale.US.country.lowercase()
+                country = Config.country
             )
+            delay(5000L)
             val endOfPaginationReached = mainNews.articleResponse.isEmpty()
 
             mainNewsRoomDatabase.withTransaction {

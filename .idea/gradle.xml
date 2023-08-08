@@ -19,8 +19,10 @@
             <option value="$PROJECT_DIR$/core/domain" />
             <option value="$PROJECT_DIR$/core/model" />
             <option value="$PROJECT_DIR$/core/network" />
+            <option value="$PROJECT_DIR$/core/ui" />
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/mainnews" />
+            <option value="$PROJECT_DIR$/feature/savednews" />
           </set>
         </option>
       </GradleProjectSettings>
