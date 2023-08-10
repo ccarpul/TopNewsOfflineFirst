@@ -1,9 +1,9 @@
 package com.platzi.core.network.api
 
 import com.platzi.core.network.BuildConfig
+import com.platzi.core.network.di.OkHttpClientQualifier
 import com.platzi.core.network.model.NetworkArticles
-import com.platzi.core.network.model.NetworkNewsResource
-import com.platzi.core.network.unsafeOkHttpClient
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -21,15 +21,28 @@ private interface RetrofitMainNewsNetworkApi {
 }
 
 @Singleton
-class RetrofitMainNewsNetwork @Inject constructor() : INewsNetworkDataSource {
+class RetrofitMainNewsNetwork @Inject constructor(
+    @OkHttpClientQualifier.SafeHttpClient okHttpClient: OkHttpClient
+): RetrofitBaseMainNews(okHttpClient)
+
+@Singleton
+class RetrofitUnSafeMainNewsNetwork @Inject constructor(
+    @OkHttpClientQualifier.UnSafeHttpClient okHttpClient: OkHttpClient
+): RetrofitBaseMainNews(okHttpClient)
+
+open class RetrofitBaseMainNews(
+
+    okHttpClient: OkHttpClient
+): INewsNetworkDataSource {
 
     private val networkApi = Retrofit.Builder()
         .baseUrl(BuildConfig.API_PROTOCOL_SECURE + BuildConfig.API_DOMAIN_DEV)
         .addConverterFactory(GsonConverterFactory.create())
-        .client(unsafeOkHttpClient())
+        .client(okHttpClient)
         .build().run {
             create(RetrofitMainNewsNetworkApi::class.java)
         }
+
     override suspend fun fetchMainNewsNetworkResources(
         page: Int,
         pageSize: Int,

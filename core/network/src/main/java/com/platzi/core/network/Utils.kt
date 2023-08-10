@@ -1,6 +1,7 @@
 package com.platzi.core.network
 
 import android.annotation.SuppressLint
+import com.platzi.core.network.di.MainNewsModule
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import java.security.SecureRandom
@@ -10,7 +11,9 @@ import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
 
-fun unsafeOkHttpClient(vararg interceptors: HttpLoggingInterceptor): OkHttpClient =
+fun unSafeOkHttpClient(
+    vararg interceptors: HttpLoggingInterceptor = arrayOf(loggingInterceptor)
+): OkHttpClient =
     // Install the all-trusting trust manager
     // Create an ssl socket factory with our all-trusting manager
     try {
@@ -31,6 +34,19 @@ fun unsafeOkHttpClient(vararg interceptors: HttpLoggingInterceptor): OkHttpClien
     } catch (e: Exception) {
         throw RuntimeException(e)
     }
+
+private val loggingInterceptor =
+    HttpLoggingInterceptor().apply {
+        level = HttpLoggingInterceptor.Level.BODY
+    }
+
+fun safeOkHttpClient(): OkHttpClient {
+
+    return OkHttpClient
+        .Builder()
+        .addInterceptor(loggingInterceptor)
+        .build()
+}
 
 private val trustManager =
     @SuppressLint("CustomX509TrustManager")
