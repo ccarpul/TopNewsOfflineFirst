@@ -1,4 +1,4 @@
-# Platzi news challenge
+# Top News Offline first
 
 Mobile App developed in Kotlin for Android with offline first mode
 
