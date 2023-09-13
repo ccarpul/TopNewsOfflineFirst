@@ -49,8 +49,8 @@ The newsapi.org api was used.
     <td>Saved News</td>
    </tr> 
    <tr>
-      <td><img src="https://github.com/ccarpul/platzinews/blob/develop/home.png"width="300"></td>
-    <td> <img src="https://github.com/ccarpul/platzinews/blob/develop/SavedScreen.png"width="300"> </td>
+      <td><img src="https://github.com/ccarpul/TopNewsOfflineFirst/blob/develop/home.png"width="300"></td>
+    <td> <img src="https://github.com/ccarpul/TopNewsOfflineFirst/blob/develop/SavedScreen.png"width="300"> </td>
   </tr>
 </table>
 
