@@ -50,7 +50,7 @@ The newsapi.org api was used.
    </tr> 
    <tr>
       <td><img src="https://github.com/ccarpul/TopNewsOfflineFirst/blob/develop/home.png"width="300"></td>
-    <td> <img src="https://github.com/ccarpul/TopNewsOfflineFirst/blob/develop/SavedScreen.png"width="300"> </td>
+    <td> <img src="https://github.com/ccarpul/TopNewsOfflineFirst/blob/develop/saved.png"width="300"> </td>
   </tr>
 </table>
 
