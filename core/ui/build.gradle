@@ -6,10 +6,11 @@ plugins {
 apply from: '../../config-android.gradle'
 
 android {
-    namespace 'com.platzi.core.ui'
+    namespace 'com.carpul.core.ui'
     compileSdk 33
 
     buildFeatures {
+        buildConfig = true
         compose true
     }
     composeOptions {

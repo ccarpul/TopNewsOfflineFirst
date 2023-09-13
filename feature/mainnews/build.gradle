@@ -6,7 +6,7 @@ plugins {
 apply from: '../../config-android.gradle'
 
 android {
-    namespace 'com.platzi.feature.mainnews'
+    namespace 'com.carpul.feature.mainnews'
     compileSdk 33
 
     buildFeatures {

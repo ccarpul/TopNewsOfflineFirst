@@ -6,7 +6,7 @@ plugins {
 apply from: '../../config-android.gradle'
 
 android {
-    namespace 'com.platzi.core.domain'
+    namespace 'com.carpul.core.domain'
     compileSdk 33
 }
 

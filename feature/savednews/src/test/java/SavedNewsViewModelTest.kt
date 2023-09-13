@@ -1,8 +1,8 @@
-import com.platzi.core.common.TestConstants
-import com.platzi.feature.mainnews.SavedNewsState
-import com.platzi.feature.mainnews.SavedNewsViewModel
-import com.platzi.feature.mainnews.navigation.FakeSavedNewsUseCase
-import com.platzi.news.domain.usecases.UpdateArticleUseCase
+import com.carpul.core.common.TestConstants
+import com.carpul.feature.savednews.SavedNewsState
+import com.carpul.feature.savednews.SavedNewsViewModel
+import com.carpul.feature.savednews.navigation.FakeSavedNewsUseCase
+import com.carpul.news.domain.usecases.UpdateArticleUseCase
 import io.mockk.MockKAnnotations
 import io.mockk.impl.annotations.RelaxedMockK
 import kotlinx.coroutines.Dispatchers

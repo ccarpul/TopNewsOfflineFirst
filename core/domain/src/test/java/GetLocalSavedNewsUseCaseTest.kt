@@ -1,6 +1,6 @@
-import com.platzi.core.common.TestConstants
-import com.platzi.news.data.repository.NewsRepository
-import com.platzi.news.domain.usecases.GetLocalSavedNewsUseCase
+import com.carpul.core.common.TestConstants
+import com.carpul.news.data.repository.NewsRepository
+import com.carpul.news.domain.usecases.GetLocalSavedNewsUseCase
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.InjectMockKs

@@ -1,6 +1,6 @@
 # Platzi news challenge
 
-Mobile App developed in Kotlin for Android for Platzi Challenge.
+Mobile App developed in Kotlin for Android with offline first mode
 
 It shows recent news from US and the articles saved
 

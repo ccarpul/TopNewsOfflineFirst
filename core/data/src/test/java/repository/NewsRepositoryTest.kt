@@ -1,16 +1,16 @@
 package repository
 
-import com.platzi.core.common.TestConstants
-import com.platzi.core.database.room.dao.MainNewsDao
-import com.platzi.core.database.room.dao.SavedNewsDao
-import com.platzi.core.database.room.entities.SavedNewsEntity
-import com.platzi.core.database.room.entities.asEntity
-import com.platzi.core.database.room.entities.asExternalArticle
-import com.platzi.core.database.room.entities.asSavedEntity
-import com.platzi.core.database.room.model.PopulatedMainNews
-import com.platzi.news.data.repository.INewsRepository
-import com.platzi.news.data.repository.NewsRepository
-import com.platzi.news.data.repository.paging.MainNewsRemoteMediator
+import com.carpul.core.common.TestConstants
+import com.carpul.core.database.room.dao.MainNewsDao
+import com.carpul.core.database.room.dao.SavedNewsDao
+import com.carpul.core.database.room.entities.SavedNewsEntity
+import com.carpul.core.database.room.entities.asEntity
+import com.carpul.core.database.room.entities.asExternalArticle
+import com.carpul.core.database.room.entities.asSavedEntity
+import com.carpul.core.database.room.model.PopulatedMainNews
+import com.carpul.news.data.repository.INewsRepository
+import com.carpul.news.data.repository.NewsRepository
+import com.carpul.news.data.repository.paging.MainNewsRemoteMediator
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK

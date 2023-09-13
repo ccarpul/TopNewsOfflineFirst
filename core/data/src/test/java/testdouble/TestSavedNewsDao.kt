@@ -1,7 +1,7 @@
 package testdouble
 
-import com.platzi.core.database.room.dao.SavedNewsDao
-import com.platzi.core.database.room.entities.SavedNewsEntity
+import com.carpul.core.database.room.dao.SavedNewsDao
+import com.carpul.core.database.room.entities.SavedNewsEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update

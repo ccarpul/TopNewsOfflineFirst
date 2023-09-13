@@ -7,7 +7,7 @@ plugins {
 apply from: '../../config-android.gradle'
 
 android {
-    namespace 'com.platzi.core.network'
+    namespace 'com.carpul.core.network'
     compileSdk 33
 
     buildFeatures {

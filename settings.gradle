@@ -12,13 +12,11 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Platzi Challenge News"
+rootProject.name = "Top News offline first"
 include ':app'
-include ':core'
 include ':core:data'
 include ':core:domain'
 include ':core:network'
-include ':feature'
 include ':feature:mainnews'
 include ':feature:savednews'
 include ':core:database'

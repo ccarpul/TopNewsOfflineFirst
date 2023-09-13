@@ -6,11 +6,11 @@ plugins {
 apply from: '../config-android.gradle'
 
 android {
-    namespace 'com.platzi.news'
+    namespace 'com.carpul.news'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.platzi.news"
+        applicationId "com.carpul.news"
         versionCode 1
         versionName "1.0"
     }

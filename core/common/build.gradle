@@ -5,7 +5,7 @@ plugins {
 apply from: '../../config-android.gradle'
 
 android {
-    namespace 'com.platzi.mylibrary'
+    namespace 'com.carpul.model'
     compileSdk 33
 }
 
