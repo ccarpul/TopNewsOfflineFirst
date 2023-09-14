@@ -14,10 +14,10 @@ import com.google.accompanist.pager.rememberPagerState
 @Composable
 fun CustomHorizontalPager(
     itemCount: Int,
+    currentPage: Int,
     content: @Composable (PagerScope, Int) -> Unit
 ) {
-
-    val pagerState = rememberPagerState()
+    val pagerState = rememberPagerState(initialPage = currentPage)
 
     HorizontalPager(
         count = itemCount,

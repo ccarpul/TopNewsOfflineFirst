@@ -1,6 +1,7 @@
 package com.carpul.feature.mainnews
 
 
+import androidx.activity.ComponentActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,10 +13,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -37,11 +44,14 @@ import kotlin.math.absoluteValue
 @Composable
 fun MainNewsRoute(
     viewModel: MainNewsViewModel = hiltViewModel(),
+    shareViewModel: ShareViewModel = hiltViewModel(LocalContext.current as ComponentActivity)
 ) {
     val state = viewModel.mainNewsPagedUiState.collectAsLazyPagingItems()
+    val saveCurrentPage: (Int) -> Unit = { page -> shareViewModel.saveCurrentPage (page) }
+
     when (state.loadState.mediator?.refresh) {
         LoadState.Loading -> LoadingState()
-        else -> MainNewsGridPaged(state) { article ->
+        else -> MainNewsGridPaged(state, saveCurrentPage, shareViewModel.getCurrentPage()) { article ->
             viewModel.updateSaveArticle(article)
         }
     }
@@ -51,8 +61,19 @@ fun MainNewsRoute(
 @Composable
 fun MainNewsGridPaged(
     articles: LazyPagingItems<Article>,
+    saveCurrentPage: (Int) -> Unit,
+    currentPage: Int,
     updateSaveArticle: (Article) -> Unit,
 ) {
+
+    var page by remember { mutableStateOf(currentPage) }
+
+    DisposableEffect(Unit) {
+        onDispose {
+            saveCurrentPage(page)
+        }
+    }
+
     Column {
         Text(
             text = stringResource(R.string.main_news_title),
@@ -67,9 +88,11 @@ fun MainNewsGridPaged(
         Spacer(modifier = Modifier.padding(vertical = 16.dp))
 
         CustomHorizontalPager(
-            itemCount = articles.itemCount
+            itemCount = articles.itemCount,
+            currentPage = currentPage,
         ) { pagerScope, current ->
             articles[current]?.let { article ->
+                page = pagerScope.currentPage
                 NewsCardResumed(
                     modifier = Modifier
                         .graphicsLayer {
