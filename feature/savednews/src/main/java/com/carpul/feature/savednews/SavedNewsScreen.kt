@@ -45,22 +45,10 @@ fun SavedNewsLazyList(
     articles: List<Article>,
     updateSaveArticle: (Article) -> Unit,
 ) {
-    Column(Modifier.padding(horizontal = 32.dp)) {
-        Text(
-            text = stringResource(R.string.saved_news_title),
-            style = MaterialTheme.typography.titleLarge.copy(
-                fontSize = 30.sp,
-                textAlign = TextAlign.Center
-            ),
-            modifier = Modifier
-                .padding(top = 32.dp)
-                .fillMaxWidth()
-        )
-        Spacer(modifier = Modifier.padding(vertical = 16.dp))
+
         SavedNewsList(articles) { title ->
             updateSaveArticle(title)
         }
-    }
 }
 
 @Composable
@@ -70,11 +58,26 @@ fun SavedNewsList(
 ) {
 
     LazyColumn {
+        item {
+            Text(
+                text = stringResource(R.string.saved_news_title),
+                style = MaterialTheme.typography.titleLarge.copy(
+                    fontSize = 30.sp,
+                    textAlign = TextAlign.Center
+                ),
+                modifier = Modifier
+                    .padding(top = 32.dp)
+                    .fillMaxWidth()
+            )
+            Spacer(modifier = Modifier.padding(vertical = 16.dp))
+        }
+
         items(articles) { article ->
+
             NewsCardResumed(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(8.dp)
+                    .padding(vertical = 8.dp, horizontal = 32.dp)
                     .height(340.dp),
                 article
             ) {
