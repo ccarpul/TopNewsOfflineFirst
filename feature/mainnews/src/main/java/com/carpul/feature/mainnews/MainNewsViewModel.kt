@@ -25,4 +25,8 @@ class MainNewsViewModel @Inject constructor(
             updateArticleUseCase(article)
         }
     }
+
+    companion object {
+        var currentPage = 0
+    }
 }

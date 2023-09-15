@@ -43,15 +43,14 @@ import kotlin.math.absoluteValue
 
 @Composable
 fun MainNewsRoute(
-    viewModel: MainNewsViewModel = hiltViewModel(),
-    shareViewModel: ShareViewModel = hiltViewModel(LocalContext.current as ComponentActivity)
+    viewModel: MainNewsViewModel = hiltViewModel()
 ) {
     val state = viewModel.mainNewsPagedUiState.collectAsLazyPagingItems()
-    val saveCurrentPage: (Int) -> Unit = { page -> shareViewModel.saveCurrentPage (page) }
+    val saveCurrentPage: (Int) -> Unit = { page -> MainNewsViewModel.currentPage = page }
 
     when (state.loadState.mediator?.refresh) {
         LoadState.Loading -> LoadingState()
-        else -> MainNewsGridPaged(state, saveCurrentPage, shareViewModel.getCurrentPage()) { article ->
+        else -> MainNewsGridPaged(state, saveCurrentPage, MainNewsViewModel.currentPage) { article ->
             viewModel.updateSaveArticle(article)
         }
     }
